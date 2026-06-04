@@ -70,12 +70,4 @@ AlertMartCedcos/
 * Responsive and lightweight design
 * Best viewed in a modern browser
 
----
 
-## 📷 Screenshots (Optional)
-
-Add project screenshots here after uploading.
-
-## 🌐 Demo (Optional)
-
-Add your deployed project link here.
