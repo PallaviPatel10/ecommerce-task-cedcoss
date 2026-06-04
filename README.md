@@ -1,56 +1,81 @@
-# AlertMartCedcos
+# 🛒 AlertMartCedcos
 
-## Description
+A modern and interactive e-commerce storefront with a smart notification system built using **HTML, CSS, and JavaScript**.
+This project simulates a shopping experience where users can browse products, manage notifications, and interact with a dynamic cart interface.
 
-A simple static web storefront and notification demo built with plain HTML, CSS, and JavaScript.
+---
 
-## Features
+## ✨ Features
 
-### Notification Panel
+### 🔔 Smart Notification Center
 
-* All, Unread, Read filters
-* Mark all read / Mark all unread
-* Clear all notifications
-* Total notification count
+* View notifications using **All / Unread / Read** filters
+* Mark notifications as **Read** or **Unread**
+* Clear notifications instantly
+* Track total notification count in real time
 
-### Product Listing
+### 🛍️ Product Showcase
 
-* Category filtering
-* Search functionality
-* Add to cart behavior
+* Browse products through category filtering
+* Search products quickly
+* Add products directly to the shopping cart
 
-### Cart System
+### 🛒 Interactive Cart
 
-* Cart icon with badge
-* Slide-open cart panel
+* Cart badge updates dynamically
+* Slide-open cart panel for a smoother shopping experience
 
-## Technologies Used
+---
 
-* HTML
-* CSS
-* JavaScript
+## 🧰 Technologies Used
 
-## How to Run Locally
+* HTML5
+* CSS3
+* JavaScript (Vanilla JS)
+
+---
+
+## 🚀 Run Locally
 
 ```bash
 cd AlertMartCedcos
 python3 -m http.server 8001
 ```
 
-Then open:
+Open in browser:
 
 ```text
 http://localhost:8001
 ```
 
-## File Structure
+---
 
-* `index.html` — page content and layout
-* `styles.css` — app styles
-* `script.js` — interactive behavior and notification logic
+## 📁 Project Structure
 
-## Notes
+```text
+AlertMartCedcos/
+│
+├── index.html     # Main webpage structure
+├── styles.css     # UI styling and layout
+├── script.js      # Notifications, cart, and interactions
+└── README.md      # Project documentation
+```
 
-* No build tools needed
-* Works as a static site
-* Use a modern browser for best experience
+---
+
+## 📌 Project Notes
+
+* Fully static frontend application
+* No installation or build setup required
+* Responsive and lightweight design
+* Best viewed in a modern browser
+
+---
+
+## 📷 Screenshots (Optional)
+
+Add project screenshots here after uploading.
+
+## 🌐 Demo (Optional)
+
+Add your deployed project link here.
