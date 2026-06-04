@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlertMart Notifications</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="AlertMart home">
+        <span class="brand-mark">A</span>
+        <span>AlertMart</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#">Deals</a>
+        <a href="#">Orders</a>
+        <a href="#">Support</a>
+      </nav>
+
+      <div class="actions">
+        <button class="cart-button" type="button" aria-label="Open cart" aria-expanded="false">
+          <svg
+            aria-hidden="true"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 6h15l-1.5 9h-12L4 6z"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="8" cy="20" r="2" fill="currentColor" />
+            <circle cx="17" cy="20" r="2" fill="currentColor" />
+            <path
+              d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <span class="cart-count" id="cartCount" aria-live="polite">2</span>
+        </button>
+
+        <section class="cart-panel" id="cartPanel" aria-label="Shopping cart" hidden>
+          <div class="panel-header">
+            <div>
+              <h2>Shopping cart</h2>
+              <p id="cartSummary">2 items in your cart</p>
+            </div>
+          </div>
+          <div class="cart-content">
+            <p class="cart-empty">Cart preview is not available yet, but your item count is updated.</p>
+          </div>
+          <div class="cart-actions">
+            <button class="view-cart-button" type="button">View cart</button>
+            <button class="checkout-button primary-button" type="button">Checkout</button>
+          </div>
+        </section>
+
+        <div class="notification-area">
+          <button
+            class="bell-button"
+            id="notificationButton"
+            type="button"
+            aria-label="Open notifications"
+            aria-expanded="false"
+            aria-controls="notificationPanel"
+          >
+            <svg
+              aria-hidden="true"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 8.7C18 5.55 15.31 3 12 3S6 5.55 6 8.7c0 6.65-2.5 7.7-2.5 7.7h17S18 15.35 18 8.7Z"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14.2 20a2.5 2.5 0 0 1-4.4 0"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span class="notification-badge" id="notificationBadge">4</span>
+          </button>
+
+          <section
+            class="notification-panel"
+            id="notificationPanel"
+            aria-label="Recent notifications"
+            hidden
+          >
+            <div class="panel-header">
+              <div>
+                <h2>Notifications</h2>
+                <p id="unreadSummary">4 unread updates</p>
+              </div>
+              <div class="panel-actions">
+                  <button class="new-alert-button" id="addDemoAlert" type="button">
+                  New alert
+                </button>
+                <button class="mark-read-button" id="markAllRead" type="button">
+                  Mark all read
+                </button>
+                <button class="mark-read-button" id="markAllUnread" type="button">
+                  Mark all unread
+                </button>
+                <button class="clear-all-button" id="clearAll" type="button">
+                  Clear all
+                </button>
+              </div>
+            </div>
+            <label class="notification-search">
+              <span>Search notifications</span>
+              <input
+                id="notificationSearch"
+                type="search"
+                placeholder="Search orders, sales, payments..."
+              />
+            </label>
+            <div class="panel-filters" role="group" aria-label="Notification filters">
+              <button class="filter-button is-active" id="filterAll" type="button">
+                All
+              </button>
+              <button class="filter-button" id="filterUnread" type="button">
+                Unread
+              </button>
+              <button class="filter-button" id="filterRead" type="button">
+                Read
+              </button>
+              <button class="filter-button" data-notification-category="Order" type="button">
+                Orders
+              </button>
+              <button class="filter-button" data-notification-category="Sale" type="button">
+                Sales
+              </button>
+              <button class="filter-button" data-notification-category="Payment" type="button">
+                Payments
+              </button>
+            </div>
+
+            <ul class="notification-list" id="notificationList"></ul>
+          </section>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Today at AlertMart</p>
+          <h1>Deals, alerts, and checkout momentum in one place.</h1>
+          <p>
+            Browse real products, filter categories, add items to cart, and keep
+            every order update close through the notification bell.
+          </p>
+          <button class="primary-button" id="browseOffers" type="button">
+            Browse offers
+          </button>
+        </div>
+
+        <aside class="hero-panel" aria-label="Shopping highlights">
+          <div class="pulse-card">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <div>
+              <strong>Flash Sale Live</strong>
+              <p>8 curated products available today.</p>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <strong>45%</strong>
+              <span>top discount</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>unread alerts</span>
+            </div>
+            <div>
+              <strong>2</strong>
+              <span>cart items</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="product-section" id="products">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Shop products</p>
+            <h2>Popular picks</h2>
+          </div>
+          <p id="productCountLabel">Showing 8 products</p>
+        </div>
+
+        <div class="shop-controls" aria-label="Product controls">
+          <label class="search-field">
+            <span>Search products</span>
+            <input
+              id="productSearch"
+              type="search"
+              placeholder="Search headphones, laptop, sneakers..."
+            />
+          </label>
+          <div class="category-tabs" role="group" aria-label="Product categories">
+            <button class="category-button is-active" data-category="all" type="button">
+              All
+            </button>
+            <button class="category-button" data-category="tech" type="button">
+              Tech
+            </button>
+            <button class="category-button" data-category="home" type="button">
+              Home
+            </button>
+            <button class="category-button" data-category="style" type="button">
+              Style
+            </button>
+          </div>
+        </div>
+
+        <div class="deal-board" aria-label="Featured products">
+          <article class="deal-card" data-category="tech">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/3945667/pexels-photo-3945667.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Wireless headphones"
+              />
+              <span class="discount-pill">45% off</span>
+            </div>
+            <span>Flash Sale</span>
+            <strong>Wireless Headphones</strong>
+            <p>Up to 45% off for the next hour.</p>
+            <div class="product-meta">
+              <p class="product-price">₹4,299</p>
+              <small>Free delivery</small>
+            </div>
+            <button class="product-cart-button" data-product="Wireless Headphones" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="tech">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/8899536/pexels-photo-8899536.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Smart watch"
+              />
+              <span class="discount-pill">New</span>
+            </div>
+            <span>New Arrival</span>
+            <strong>Smart Watch</strong>
+            <p>Delivery arriving soon with special bundle savings.</p>
+            <div class="product-meta">
+              <p class="product-price">₹7,999</p>
+              <small>2 year warranty</small>
+            </div>
+            <button class="product-cart-button" data-product="Smart Watch" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="home">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/6303718/pexels-photo-6303718.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Smart kitchen scale"
+              />
+              <span class="discount-pill">Rewards</span>
+            </div>
+            <span>Rewards</span>
+            <strong>Kitchen Scale</strong>
+            <p>Redeem points before this weekend.</p>
+            <div class="product-meta">
+              <p class="product-price">₹1,299</p>
+              <small>250 points</small>
+            </div>
+            <button class="product-cart-button" data-product="Kitchen Scale" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="home">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/775219/pexels-photo-775219.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Smart air purifier"
+              />
+              <span class="discount-pill">Home essential</span>
+            </div>
+            <span>Home Essential</span>
+            <strong>Smart Air Purifier</strong>
+            <p>Clean indoor air with quiet HEPA filtration and app control.</p>
+            <div class="product-meta">
+              <p class="product-price">₹4,299</p>
+              <small>Smart home ready</small>
+            </div>
+            <button class="product-cart-button" data-product="Smart Air Purifier" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="tech">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/1092652/pexels-photo-1092652.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Laptop computer"
+              />
+              <span class="discount-pill">Work ready</span>
+            </div>
+            <span>Work Ready</span>
+            <strong>Pro Laptop</strong>
+            <p>Lightweight laptop for study, work, and entertainment.</p>
+            <div class="product-meta">
+              <p class="product-price">₹54,999</p>
+              <small>Fast shipping</small>
+            </div>
+            <button class="product-cart-button" data-product="Pro Laptop" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="tech">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/14309811/pexels-photo-14309811.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Bluetooth speaker"
+              />
+              <span class="discount-pill">Audio</span>
+            </div>
+            <span>Audio Deal</span>
+            <strong>Bluetooth Speaker</strong>
+            <p>Portable wireless speaker with room-filling sound.</p>
+            <div class="product-meta">
+              <p class="product-price">₹2,199</p>
+              <small>Top rated</small>
+            </div>
+            <button class="product-cart-button" data-product="Bluetooth Speaker" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="style">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/16359302/pexels-photo-16359302.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Travel backpack"
+              />
+              <span class="discount-pill">Travel</span>
+            </div>
+            <span>Travel Pick</span>
+            <strong>Travel Backpack</strong>
+            <p>Durable everyday backpack with practical storage.</p>
+            <div class="product-meta">
+              <p class="product-price">₹1,899</p>
+              <small>Water resistant</small>
+            </div>
+            <button class="product-cart-button" data-product="Travel Backpack" type="button">
+              Add to cart
+            </button>
+          </article>
+          <article class="deal-card" data-category="style">
+            <div class="product-image-wrap">
+              <img
+                class="product-image"
+                src="https://images.pexels.com/photos/12730139/pexels-photo-12730139.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Sport sneakers"
+              />
+              <span class="discount-pill">Style</span>
+            </div>
+            <span>Style Drop</span>
+            <strong>Sport Sneakers</strong>
+            <p>Comfortable sneakers for casual wear and daily walks.</p>
+            <div class="product-meta">
+              <p class="product-price">₹2,799</p>
+              <small>New colors</small>
+            </div>
+            <button class="product-cart-button" data-product="Sport Sneakers" type="button">
+              Add to cart
+            </button>
+          </article>
+        </div>
+
+        <p class="empty-products" id="emptyProducts" hidden>
+          No products match your search.
+        </p>
+      </section>
+    </main>
+
+    <div class="cart-toast" id="cartToast" role="status" aria-live="polite" hidden>
+      <strong>Added to cart</strong>
+      <span id="cartToastText">Product added successfully.</span>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
